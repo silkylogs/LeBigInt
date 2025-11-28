@@ -59,8 +59,10 @@ int main() {
 
 ### Iteration
 ```c
-int i = 0;
-int limit = 100;
+int i, limit;
+
+i = 0;
+limit = 100;
 
 for (i = 0; i <= limit; i += stoi("1")) {
 	if (i % 3 && i % 5) { printf("FizzBuzz\n"); }
@@ -71,17 +73,17 @@ for (i = 0; i <= limit; i += stoi("1")) {
 ```
 
 ```c
-struct LeBigInt *i. limit;
+struct LeBigInt *i, *limit;
 
-lbi_from_int32(i, 0);
-lbi_from_int32(i, 100);
+i = lbi_from_int(0);
+limit = lbi_from_int(100);
 
-while (lbi_fwd_iter_end_inclusive_i32(i, limit, 1)) {
-	if (lbi_mod_i32(i, 3) && lbi_mod_i32(i, 5)) { printf("FizzBuzz\n"); }
-	else if (lbi_mod_i32(i, 3)) { printf("Fizz\n"); }
-	else if (lbi_mod_i32(i, 5)) { printf("Buzz\n"): }
+do {
+	if (lbi_mod_i32(i, 3) && lbi_mod_i32(i, 5)) { lbi_printf("FizzBuzz\n"); }
+	else if (lbi_mod_i32(i, 3)) { lbi_printf("Fizz\n"); }
+	else if (lbi_mod_i32(i, 5)) { lbi_printf("Buzz\n"): }
 	else { lbi_printf("%lbi\n", i); }
-}
+} while (lbi_fwd_iter_end_inclusive_step_i32(i, limit, 1));
 
 lbi_drop(i, limit);
 ```
@@ -129,6 +131,6 @@ void *lbi_ptr(size_t type_sz, uint8_t *ptr, struct LeBigInt *idx);
 void lbi_add_int32(struct LeBigInt *, int32_t);
 void lbi_mod_int32(struct LeBigInt *, int32_t);
 
-void lbi_fwd_iter_end_inclusive_i32(struct LeBigInt *it, struct LeBigInt *lim, int32_t step);
+void lbi_fwd_iter_end_inclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
 
 #endif
