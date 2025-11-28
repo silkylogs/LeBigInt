@@ -1,4 +1,7 @@
-﻿#ifndef LE_BIG_INT_2025_11_28_H
+﻿#include <stdint.h>
+
+
+#ifndef LE_BIG_INT_2025_11_28_H
 #define LE_BIG_INT_2025_11_28_H
 
 /*
@@ -106,5 +109,26 @@ for (
 lbi_drop(i);
 ```
 */
+
+
+/* Handle type */
+struct LeBigInt;
+
+struct LeBigInt *lbi_from_int32(struct LeBigInt *, int32_t);
+struct LeBigInt *lbi_from_float(struct LeBigInt *, float);
+struct LeBigInt *lbi_from_cstr(struct LeBigInt *, char *);
+struct LeBigInt *lbi_from_int64(struct LeBigInt *, int64_t);
+
+void lbi_assign(struct LeBigInt *dst, struct LeBigInt *src);
+void lbi_printf(const char *fmt, ...);
+void lbi_drop(struct LeBigInt *, ...);
+
+#define LBI_INDEX(T, ptr, idx) *((T)*)(lbi_ptr(sizeof ((T)), (ptr), (idx)))
+void *lbi_ptr(size_t type_sz, uint8_t *ptr, struct LeBigInt *idx);
+
+void lbi_add_int32(struct LeBigInt *, int32_t);
+void lbi_mod_int32(struct LeBigInt *, int32_t);
+
+void lbi_fwd_iter_end_inclusive_i32(struct LeBigInt *it, struct LeBigInt *lim, int32_t step);
 
 #endif
