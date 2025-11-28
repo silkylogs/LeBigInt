@@ -5,7 +5,7 @@
 #define LE_BIG_INT_2025_11_28_H
 
 /*
-# LeBigInt - Little endian, arbitary precision, signed Big Integer.
+# LeBigInt - Little endian, arbitrary precision, signed Big Integer.
 
 ## Description
 Intended to be a replacement for C's integral operations, with the goal of restricting behaviour to a wholly comprehensible subset. Specifiying intention is also another goal.
