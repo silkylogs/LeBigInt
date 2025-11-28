@@ -5,7 +5,7 @@
 # LeBigInt - Little endian, arbitary precision, signed Big Integer.
 
 ## Description
-Intended to be a replacement for the standard integral operations that C has, with the goal of making code behaviour predictable.
+Intended to be a replacement for C's integral operations, with the goal of restricting behaviour to a wholly comprehensible subset.
 
 ## Examples
 ### Standard integer math:
