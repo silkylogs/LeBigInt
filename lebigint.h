@@ -13,46 +13,48 @@ Intended to be a replacement for C's integral operations, with the goal of restr
 ## Examples
 ### Standard integer math:
 ```c
-int multiply_add(int x, int multiplicand, int addend) {
-	x *= multiplicand;
-	x += addend;
-	return x;
+void multiply_add(int *x, int multiplicand, int addend) {
+	*x *= multiplicand;
+	*x += addend;
 }
 
-int x = 5;
-int multiplicand = 6.0f;
-int addend = stoi("7"); // Possible failure: NaN propagation?
-int result = 0;
+int main() {
+	int x, multiplicand, addend;
 
-result = multiply_add(x, multiplicand, addend);
+	x = 5;
+	multiplicand = stoi("6");
+	addend = stoi("7");
 
-printf("%d\n", result);
+	multiply_add(&x, multiplicand, addend);
+
+	printf("%d\n", x);
+
+} // Automatic deallocation of stack variables
 ```
 
 ```c
-struct LeBigInt *
-multiply_add(
+void multiply_add(
 	struct LeBigInt *x,
 	struct LeBigInt *multiplicand,
 	struct LeBigInt *addend
 ) {
 	lbi_mul(x, multiplicand);
 	lbi_add(x, addend);
-	return x;
 }
 
-struct LeBigInt *x, *multiplicand, *addend, *result;
+int main() {
+	struct LeBigInt *x, *multiplicand, *addend;
 
-lbi_from_int32(x, 5);
-lbi_from_float32(x, 6.0f);
-lbi_from_cstr(x, "7");
-lbi_from_int64(result, 0);
+	x = lbi_from_int(5);
+	multiplicand = lbi_from_zt_cstr("6"); // Note: NaN on failure?
+	addend = lbi_from_str("7", sizeof "7");
 
-lbi_assign(result, multiply_add(x, multiplicand, addend));
+	multiply_add(x, multiplicand, addend);
 
-lbi_printf("%lbi\n", result);
+	lbi_printf("%lbi\n", result);
 
-lbi_drop(x, multiplicand, addend, result);
+	lbi_drop(x, multiplicand, addend, result);
+}
 ```
 
 ### Iteration
@@ -111,12 +113,11 @@ lbi_drop(i);
 */
 
 
-/* Handle type */
-struct LeBigInt;
+struct LeBigInt; /* Handle type */
 
-struct LeBigInt *lbi_from_int(struct LeBigInt *, intmax_t);
-struct LeBigInt *lbi_from_zt_cstr(struct LeBigInt *, const char *);
-struct LeBigInt *lbi_from_str(struct LeBigInt *, char *, size_t);
+struct LeBigInt *lbi_from_int(intmax_t);
+struct LeBigInt *lbi_from_zt_cstr(const char *);
+struct LeBigInt *lbi_from_str(const char *, size_t);
 
 void lbi_assign(struct LeBigInt *dst, struct LeBigInt *src);
 void lbi_printf(const char *fmt, ...);
