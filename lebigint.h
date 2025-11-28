@@ -1,5 +1,5 @@
 ﻿#include <stdint.h>
-
+#include <stdbool.h>
 
 #ifndef LE_BIG_INT_2025_11_28_H
 #define LE_BIG_INT_2025_11_28_H
