@@ -92,22 +92,27 @@ lbi_drop(i, limit);
 ```c
 size_t i;
 char *bigstr = get_big_string();
-for (i = 0; bigstr[i] != '\0'; i += 1) putchar(bigstr[i]);
+
+for (
+	i = 0;
+	bigstr[i] != '\0';
+	i += 1
+) {
+	putchar(bigstr[i]);
+}
 ```
 
 ```c
 struct LeBigInt *i;
 char *bigstr = get_big_string();
-char c;
 
 for (
-	lbi_from_i32(i, 0);
+	i = lbi_from_i32(0);
 	LBI_INDEX(char, bigstr, i) != '\0';
 	lbi_add(i, 1)
 ) {
-	// LBI_INDEX desugars to the following:
-	c = *((char)*)lbi_ptr(sizeof (char), bigstr, i);
-	putchar(c);
+	// Note: LBI_INDEX desugars to the following:
+	putchar( *((char)*)lbi_ptr(sizeof (char), bigstr, i) );
 }
 
 lbi_drop(i);
