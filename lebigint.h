@@ -95,10 +95,10 @@ char c;
 
 for (
 	lbi_from_i32(i, 0); 
-	lbi_index(char, bigstr, i) != '\0'; 
+	LBI_INDEX(char, bigstr, i) != '\0'; 
 	lbi_add(i, 1)
 ) {
-	c = *((char)*)lbi_index_desugared(sizeof (char), bigstr, i);
+	c = *((char)*)lbi_index(sizeof (char), bigstr, i);
 	putchar(c);
 }
 
