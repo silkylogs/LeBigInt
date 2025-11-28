@@ -133,8 +133,17 @@ void lbi_drop(struct LeBigInt *, ...);
 #define LBI_INDEX(T, ptr, idx) *((T)*)(lbi_ptr(sizeof ((T)), (ptr), (idx)))
 void *lbi_ptr(size_t type_sz, uint8_t *ptr, struct LeBigInt *idx);
 
-void lbi_add_int(struct LeBigInt *, intmax_t);
-void lbi_mod_int(struct LeBigInt *, intmax_t);
+void lbi_add(struct LeBigInt *dst, struct LeBigInt *param);
+void lbi_sub(struct LeBigInt *dst, struct LeBigInt *param);
+void lbi_mul(struct LeBigInt *dst, struct LeBigInt *param);
+void lbi_div(struct LeBigInt *dst, struct LeBigInt *param);
+
+void lbi_add_int(struct LeBigInt *dst, intmax_t param);
+void lbi_sub_int(struct LeBigInt *dst, intmax_t param);
+void lbi_mul_int(struct LeBigInt *dst, intmax_t param);
+void lbi_div_int(struct LeBigInt *dst, intmax_t param);
+
+void lbi_mod_int(struct LeBigInt *dst, intmax_t param); // TODO: redesign
 
 void lbi_fwd_iter_end_inclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
 
