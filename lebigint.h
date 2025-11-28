@@ -66,7 +66,7 @@ for (i = 0; i <= limit; i += stoi("1")) {
 	if (i % 3 && i % 5) { printf("FizzBuzz\n"); }
 	else if (i % 3) { printf("Fizz\n"); }
 	else if (i % 5) { printf("Buzz\n"); }
-	else { printf("%d\n", i); } 
+	else { printf("%d\n", i); }
 }
 ```
 
@@ -99,8 +99,8 @@ char *bigstr = get_big_string();
 char c;
 
 for (
-	lbi_from_i32(i, 0); 
-	LBI_INDEX(char, bigstr, i) != '\0'; 
+	lbi_from_i32(i, 0);
+	LBI_INDEX(char, bigstr, i) != '\0';
 	lbi_add(i, 1)
 ) {
 	// LBI_INDEX desugars to the following:
