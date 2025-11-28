@@ -98,7 +98,8 @@ for (
 	LBI_INDEX(char, bigstr, i) != '\0'; 
 	lbi_add(i, 1)
 ) {
-	c = *((char)*)lbi_index(sizeof (char), bigstr, i);
+	// LBI_INDEX desugars to the following:
+	c = *((char)*)lbi_ptr(sizeof (char), bigstr, i);
 	putchar(c);
 }
 
