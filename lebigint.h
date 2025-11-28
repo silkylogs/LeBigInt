@@ -114,10 +114,9 @@ lbi_drop(i);
 /* Handle type */
 struct LeBigInt;
 
-struct LeBigInt *lbi_from_int32(struct LeBigInt *, int32_t);
-struct LeBigInt *lbi_from_float(struct LeBigInt *, float);
-struct LeBigInt *lbi_from_cstr(struct LeBigInt *, char *);
-struct LeBigInt *lbi_from_int64(struct LeBigInt *, int64_t);
+struct LeBigInt *lbi_from_int(struct LeBigInt *, intmax_t);
+struct LeBigInt *lbi_from_zt_cstr(struct LeBigInt *, const char *);
+struct LeBigInt *lbi_from_str(struct LeBigInt *, char *, size_t);
 
 void lbi_assign(struct LeBigInt *dst, struct LeBigInt *src);
 void lbi_printf(const char *fmt, ...);
