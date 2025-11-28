@@ -18,7 +18,7 @@ int multiply_add(int x, int multiplicand, int addend) {
 
 int x = 5;
 int multiplicand = 6.0f;
-int addend = stoi("7"); /* Possible failure: NaN propagation? */
+int addend = stoi("7"); // Possible failure: NaN propagation?
 int result = 0;
 
 result = multiply_add(x, multiplicand, addend);
