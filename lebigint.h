@@ -79,10 +79,18 @@ i = lbi_from_int(0);
 limit = lbi_from_int(100);
 
 do {
-	if (lbi_mod_i32(i, 3) && lbi_mod_i32(i, 5)) { lbi_printf("FizzBuzz\n"); }
-	else if (lbi_mod_i32(i, 3)) { lbi_printf("Fizz\n"); }
-	else if (lbi_mod_i32(i, 5)) { lbi_printf("Buzz\n"): }
-	else { lbi_printf("%lbi\n", i); }
+	if (lbi_divisible_by_i32(i, 3) && lbi_divisible_by_i32(i, 5)) {
+		lbi_printf("FizzBuzz\n");
+	}
+	else if (lbi_divisible_by_i32(i, 3)) {
+		lbi_printf("Fizz\n");
+	}
+	else if (lbi_divisible_by_i32(i, 5)) {
+		lbi_printf("Buzz\n");
+	}
+	else {
+		lbi_printf("%lbi\n", i);
+	}
 } while (lbi_fwd_iter_end_inclusive_step_i32(i, limit, 1));
 
 lbi_drop(i, limit);
@@ -137,14 +145,24 @@ void lbi_add(struct LeBigInt *dst, struct LeBigInt *param);
 void lbi_sub(struct LeBigInt *dst, struct LeBigInt *param);
 void lbi_mul(struct LeBigInt *dst, struct LeBigInt *param);
 void lbi_div(struct LeBigInt *dst, struct LeBigInt *param);
+void lbi_mod(struct LeBigInt *dst, struct LeBigInt *param);
 
 void lbi_add_int(struct LeBigInt *dst, intmax_t param);
 void lbi_sub_int(struct LeBigInt *dst, intmax_t param);
 void lbi_mul_int(struct LeBigInt *dst, intmax_t param);
 void lbi_div_int(struct LeBigInt *dst, intmax_t param);
+void lbi_mod_int(struct LeBigInt *dst, intmax_t param);
 
-void lbi_mod_int(struct LeBigInt *dst, intmax_t param); // TODO: redesign
+bool lbi_divisible_by_i32(struct LeBigInt *, intmax_t);
 
 void lbi_fwd_iter_end_inclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
+void lbi_fwd_iter_end_noninclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
+void lbi_bwd_iter_end_inclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
+void lbi_bwd_iter_end_noninclusive_step_i32(struct LeBigInt *it, struct LeBigInt *lim, intmax_t step);
+
+void lbi_fwd_iter_end_inclusive_step(struct LeBigInt *it, struct LeBigInt *lim, struct LeBigInt *step);
+void lbi_fwd_iter_end_noninclusive_step(struct LeBigInt *it, struct LeBigInt *lim, struct LeBigInt *step);
+void lbi_bwd_iter_end_inclusive_step(struct LeBigInt *it, struct LeBigInt *lim, struct LeBigInt *step);
+void lbi_bwd_iter_end_noninclusive_step(struct LeBigInt *it, struct LeBigInt *lim, struct LeBigInt *step);
 
 #endif
