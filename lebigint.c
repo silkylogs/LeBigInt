@@ -6,21 +6,33 @@
 - Implement backing data as little endian number string
 */
 
-static struct LbiSystemData {
+struct LbiSystemData {
 	struct LeBigInt *handles;
 	size_t handle_cnt;
 
 	char *backing_buffer;
 	size_t backing_buffer_sz;
 };
-
+static struct LbiSystemData g_system_data;
+static struct LeBigInt nan = { "0", 1, true, true, };
 
 void lbi_sys_init(void) {
-
+	g_system_data.handles = &nan;
+	g_system_data.handle_cnt = 1;
+	g_system_data.backing_buffer = nan.magnitude;
+	g_system_data.backing_buffer_sz = 1;
 }
 
 void lbi_sys_cleanup(void) {
 
+}
+
+static struct LeBigInt *lbi_handle_new(void) {
+	return &nan;
+}
+
+static void lbi_handle_append_digit(struct LeBigInt *handle, char digit) {
+	(void)handle; (void)digit;
 }
 
 struct LeBigInt *lbi_from_int(intmax_t num) {
