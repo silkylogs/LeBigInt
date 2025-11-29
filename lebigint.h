@@ -130,6 +130,9 @@ lbi_drop(i);
 
 struct LeBigInt; /* Handle type */
 
+void lbi_sys_init(void);
+void lbi_sys_cleanup(void);
+
 struct LeBigInt *lbi_from_int(intmax_t);
 struct LeBigInt *lbi_from_zt_cstr(const char *);
 struct LeBigInt *lbi_from_str(const char *, size_t);
