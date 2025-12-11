@@ -1,6 +1,0 @@
-#ifndef LE_BIG_INT_HANDLE_2025_11_29_H
-#define LE_BIG_INT_HANDLE_2025_11_29_H
-
-
-
-#endif
