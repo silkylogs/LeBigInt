@@ -1,8 +1,8 @@
 ﻿#include <stdint.h>
 #include <stdbool.h>
 
-#ifndef LE_BIG_INT_2025_11_29_H
-#define LE_BIG_INT_2025_11_29_H
+#ifndef LE_BIG_INT_2025_12_11_H
+#define LE_BIG_INT_2025_12_11_H
 
 /*
 # LeBigInt - Little endian, arbitrary precision, signed Big Integer.
@@ -34,16 +34,16 @@ int main() {
 
 ```c
 void multiply_add(
-	struct LeBigInt *x,
-	struct LeBigInt *multiplicand,
-	struct LeBigInt *addend
+	struct LeBigInt x,
+	struct LeBigInt multiplicand,
+	struct LeBigInt addend
 ) {
 	lbi_mul(x, multiplicand);
 	lbi_add(x, addend);
 }
 
 int main() {
-	struct LeBigInt *x, *multiplicand, *addend;
+	struct LeBigInt x, multiplicand, addend;
 
 	x = lbi_from_int(5);
 	multiplicand = lbi_from_zt_cstr("6"); // Note: NaN on failure?
@@ -76,7 +76,7 @@ for (i = 0; i <= limit; i += stoi("1")) {
 ```
 
 ```c
-struct LeBigInt *i, *limit;
+struct LeBigInt i, limit;
 
 i = lbi_from_int(0);
 limit = lbi_from_int(100);
@@ -114,7 +114,7 @@ for (
 ```
 
 ```c
-struct LeBigInt *i;
+struct LeBigInt i;
 char *bigstr = get_big_string();
 
 for (
